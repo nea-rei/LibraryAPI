@@ -1,0 +1,102 @@
+@LibraryAPI_HostAddress = https://localhost:7131
+
+
+POST {{LibraryAPI_HostAddress}}/api/authors
+Content-Type: application/json
+
+{
+  "firstName": "Peter",
+  "lastName": "Bun",
+  "authorIdentity": 55332
+}
+
+###
+
+POST {{LibraryAPI_HostAddress}}/api/books
+Content-Type: application/json
+
+{
+  "title": "Monday Worries",
+  "isbn": 678686734,
+  "releaseYear": 2000,
+  "authors": [
+    {
+      "id": 0,
+      "firstName": "Cheng",
+      "lastName": "Lah",
+      "authorIdentity": 55555
+    },
+    {
+      "id": 0,
+      "firstName": "Hanna",
+      "lastName": "Hue",
+      "authorIdentity": 44444
+    }]
+}
+
+###
+PUT {{LibraryAPI_HostAddress}}/api/books/AddAuthorToBook/3
+Content-Type: application/json
+
+{
+  "authors": [
+    {
+      "id": 3
+    }
+  ]
+}
+
+###
+
+POST {{LibraryAPI_HostAddress}}/api/libraryusers
+Content-Type: application/json
+
+{
+  "id": 0,
+  "firstName": "Amy",
+  "lastName": "Clarke",
+  "libraryCard": 34556
+}
+
+###
+
+GET {{LibraryAPI_HostAddress}}/api/books
+
+###
+
+GET {{LibraryAPI_HostAddress}}/api/books/1
+
+###
+
+POST {{LibraryAPI_HostAddress}}/api/loans/BorrowBook
+Content-Type: application/json
+
+{
+  "libraryUserId": 2,
+  "bookId": 2
+}
+
+###
+
+PUT {{LibraryAPI_HostAddress}}/api/loans/ReturnBook/3
+Content-Type: application/json
+
+{
+  "rating": 4
+}
+
+###
+
+DELETE {{LibraryAPI_HostAddress}}/api/authors/4
+
+###
+
+DELETE {{LibraryAPI_HostAddress}}/api/books/4
+
+###
+
+DELETE {{LibraryAPI_HostAddress}}/api/libraryusers/3
+
+###
+
+
