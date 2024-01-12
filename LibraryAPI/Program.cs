@@ -1,5 +1,4 @@
 using LibraryAPI.Model;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
