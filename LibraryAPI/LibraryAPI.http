@@ -87,15 +87,15 @@ Content-Type: application/json
 
 ###
 
-DELETE {{LibraryAPI_HostAddress}}/api/authors/4
+DELETE {{LibraryAPI_HostAddress}}/api/authors/3
 
 ###
 
-DELETE {{LibraryAPI_HostAddress}}/api/books/4
+DELETE {{LibraryAPI_HostAddress}}/api/books/2
 
 ###
 
-DELETE {{LibraryAPI_HostAddress}}/api/libraryusers/3
+DELETE {{LibraryAPI_HostAddress}}/api/libraryusers/2
 
 ###
 

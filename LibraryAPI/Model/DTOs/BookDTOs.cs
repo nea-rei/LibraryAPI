@@ -1,4 +1,5 @@
 ﻿using LibraryAPI.Model.Entities;
+using System.ComponentModel.DataAnnotations;
 using static LibraryAPI.Model.DTOs.AuthorDTOs;
 
 namespace LibraryAPI.Model.DTOs;
@@ -9,6 +10,7 @@ public class BookDTOs
     {
         public string Title { get; set; } = null!;
         public int ISBN { get; set; }
+        [Range(1400, 2100, ErrorMessage = "Please fill in the year the book was released")]
         public int ReleaseYear { get; set; }
         public List<Author>? Authors { get; set; } = [];
     }

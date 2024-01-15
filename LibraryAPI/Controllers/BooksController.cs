@@ -45,22 +45,23 @@ namespace LibraryAPI.Controllers
             {
                 return NotFound();
             }
+
             if (BookLoanExists(id))
             {
                 averagerating = _context.LibraryLoans
                   .Where(x => x.BookId == id)
                   .Average(x => x.Rating);
-            }
-            else { averagerating = 0; }
 
-            if (BookLoanExists(id))
-            {
                 available = _context.LibraryLoans
                 .Where(x => x.BookId == id)
                 .OrderBy(x => x.Id)
                 .Select(x => x.Available).Last().ToString();
             }
-            else { available = "true"; }
+            else
+            {
+                averagerating = 0;
+                available = "true";
+            }
 
             List<GetAuthorDTO>? getAuthorDTOs = book.Authors?
                 .Select(a => new GetAuthorDTO()
@@ -93,10 +94,18 @@ namespace LibraryAPI.Controllers
                 return BadRequest();
             }
 
-            var idDTO = addAuthorDTO?.Authors?.Select(s => s.Id).FirstOrDefault();
-            var authors = _context.Authors.Where(a => a.Id == idDTO).ToList();
+            var addAuthorId = addAuthorDTO.Authors?.Select(s => s.Id).ToList();
 
-            book.Authors?.AddRange(authors);
+            if (addAuthorId is not null)
+            {
+                var authors = _context.Authors.Where(a => addAuthorId.Contains(a.Id)).ToList();
+                if (authors.Count == 0)
+                {
+                    return BadRequest("Error - author does not exist");
+                }
+                else
+                book.Authors?.AddRange(authors);
+            }
 
             _context.Entry(book).State = EntityState.Modified;
 
